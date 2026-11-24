@@ -39,43 +39,43 @@ public class Program {
     private static List<Product> getProductsByCategory(List<Product> products, String category) {
         // STEP A (loop): make an empty list, loop through products, and add each one
         //   whose category matches (equalsIgnoreCase). Return the list.
-        List<Product> productList = new ArrayList<>();
-        for(Product product : products){
-            if(product.getCategory().equalsIgnoreCase(category)){
-                productList.add(product);
-            }
-        }
+        List<Product> productList;
+//        for(Product product : products){
+//            if(product.getCategory().equalsIgnoreCase(category)){
+//                productList.add(product);
+//            }
+//        }
         // STEP B (stream): products.stream(), then .filter(...), then .toList()
-        //products.stream().filter(product -> product.getCategory().equalsIgnoreCase(category)).toList();
+        productList = products.stream().filter(product -> product.getCategory().equalsIgnoreCase(category)).toList();
         return productList; // replace this line
     }
 
     // TASK 2: the total of every product's price
     private static BigDecimal getTotalInventoryValue(List<Product> products) {
         // STEP A (loop): start a total at BigDecimal.ZERO, and add each price with .add()
-        BigDecimal totalPrice = BigDecimal.ZERO;
-        for(Product product : products){
-            totalPrice = totalPrice.add(product.getPrice());
-        }
+//        BigDecimal totalPrice = BigDecimal.ZERO;
+//        for(Product product : products){
+//            totalPrice = totalPrice.add(product.getPrice());
+//        }
         // STEP B (stream, after Wednesday's demo): .map(...) each product to its price,
         //   then .reduce(BigDecimal.ZERO, ...) to add them up
-        //products.stream().map(product -> {return }).toList();
+        BigDecimal totalPrice = products.stream().map(product -> {return product.getPrice();}).reduce(BigDecimal.ZERO, (temp, num) -> temp.add(num));
         return totalPrice; // replace this line
     }
 
     // TASK 3: how many products are in one category
     private static long countProductsInCategory(List<Product> products, String category) {
         // STEP A (loop): a count that starts at 0, plus 1 for each match
-        long count = 0;
-        for (Product product : products) {
-            if(product.getCategory().equalsIgnoreCase(category)){
-                count += 1;
-            }
-
-        }
+//        long count = 0;
+//        for (Product product : products) {
+//            if(product.getCategory().equalsIgnoreCase(category)){
+//                count += 1;
+//            }
+//
+//        }
         // STEP B (stream): .filter(...), then .count()
-        //long countProducts = products.stream().filter(product -> product.getCategory().equalsIgnoreCase(category)).count();
-        return count; // replace this line
+        long countProducts = products.stream().filter(product -> product.getCategory().equalsIgnoreCase(category)).count();
+        return countProducts; // replace this line
     }
 
     // TASK 4: a list of just the prices
@@ -94,11 +94,11 @@ public class Program {
     // TASK 5: print each product
     private static void printProducts(List<Product> products) {
         // STEP A (loop): a for-each loop that prints each product
-        for(Product product : products){
-            System.out.println(product);
-        }
+//        for(Product product : products){
+//            System.out.println(product);
+//        }
         // STEP B: products.forEach(...) with a lambda
-        //products.forEach(product -> System.out.println(products));
+        products.forEach(product -> System.out.println(product));
     }
 
     private static List<Product> getInventory() {
