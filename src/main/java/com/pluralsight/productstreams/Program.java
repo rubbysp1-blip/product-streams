@@ -46,7 +46,7 @@ public class Program {
             }
         }
         // STEP B (stream): products.stream(), then .filter(...), then .toList()
-        products.stream().filter(product -> product.getCategory().equalsIgnoreCase(category)).toList();
+        //products.stream().filter(product -> product.getCategory().equalsIgnoreCase(category)).toList();
         return productList; // replace this line
     }
 
@@ -68,11 +68,14 @@ public class Program {
         // STEP A (loop): a count that starts at 0, plus 1 for each match
         long count = 0;
         for (Product product : products) {
-            count += 1;
+            if(product.getCategory().equalsIgnoreCase(category)){
+                count += 1;
+            }
+
         }
         // STEP B (stream): .filter(...), then .count()
-        long countProducts = products.stream().filter(product -> product.getCategory().equalsIgnoreCase(category)).count();
-        return countProducts; // replace this line
+        //long countProducts = products.stream().filter(product -> product.getCategory().equalsIgnoreCase(category)).count();
+        return count; // replace this line
     }
 
     // TASK 4: a list of just the prices
@@ -95,7 +98,7 @@ public class Program {
             System.out.println(product);
         }
         // STEP B: products.forEach(...) with a lambda
-        products.forEach(product -> System.out.println(products));
+        //products.forEach(product -> System.out.println(products));
     }
 
     private static List<Product> getInventory() {
