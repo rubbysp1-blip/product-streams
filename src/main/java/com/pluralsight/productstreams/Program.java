@@ -53,10 +53,14 @@ public class Program {
     // TASK 2: the total of every product's price
     private static BigDecimal getTotalInventoryValue(List<Product> products) {
         // STEP A (loop): start a total at BigDecimal.ZERO, and add each price with .add()
+        BigDecimal totalPrice = BigDecimal.ZERO;
+        for(Product product : products){
+            totalPrice = totalPrice.add(product.getPrice());
+        }
         // STEP B (stream, after Wednesday's demo): .map(...) each product to its price,
         //   then .reduce(BigDecimal.ZERO, ...) to add them up
-
-        return BigDecimal.ZERO; // replace this line
+        //products.stream().map(product -> {return }).toList();
+        return totalPrice; // replace this line
     }
 
     // TASK 3: how many products are in one category
