@@ -66,18 +66,26 @@ public class Program {
     // TASK 3: how many products are in one category
     private static long countProductsInCategory(List<Product> products, String category) {
         // STEP A (loop): a count that starts at 0, plus 1 for each match
+        long count = 0;
+        for (Product product : products) {
+            count += 1;
+        }
         // STEP B (stream): .filter(...), then .count()
-
-        return 0; // replace this line
+        long countProducts = products.stream().filter(product -> product.getCategory().equalsIgnoreCase(category)).count();
+        return countProducts; // replace this line
     }
 
     // TASK 4: a list of just the prices
     private static List<BigDecimal> getPrices(List<Product> products) {
         // STEP A (loop): an empty List<BigDecimal>; add each product's price
+        List<BigDecimal> eachProductPrice = new ArrayList<>();
+        for(Product product : products){
+            eachProductPrice.add(product.getPrice());
+        }
         // STEP B (stream, after Wednesday's demo): .map(...) each product to its price,
         //   then .toList()
-
-        return new ArrayList<>(); // replace this line
+        //products.stream().map(product -> product.getPrice()).toList();
+        return eachProductPrice; // replace this line
     }
 
     // TASK 5: print each product
@@ -87,7 +95,7 @@ public class Program {
             System.out.println(product);
         }
         // STEP B: products.forEach(...) with a lambda
-        products.forEach(product -> {});
+        products.forEach(product -> System.out.println(products));
     }
 
     private static List<Product> getInventory() {
