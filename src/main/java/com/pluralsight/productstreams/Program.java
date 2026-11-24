@@ -39,9 +39,15 @@ public class Program {
     private static List<Product> getProductsByCategory(List<Product> products, String category) {
         // STEP A (loop): make an empty list, loop through products, and add each one
         //   whose category matches (equalsIgnoreCase). Return the list.
+        List<Product> productList = new ArrayList<>();
+        for(Product product : products){
+            if(product.getCategory().equalsIgnoreCase(category)){
+                productList.add(product);
+            }
+        }
         // STEP B (stream): products.stream(), then .filter(...), then .toList()
-
-        return new ArrayList<>(); // replace this line
+        products.stream().filter(product -> product.getCategory().equalsIgnoreCase(category)).toList();
+        return productList; // replace this line
     }
 
     // TASK 2: the total of every product's price
