@@ -127,8 +127,7 @@ public class Program {
     private static List<Product> getProductsByPrice(List<Product> products) {
         // No loop for this one: sorting with a loop is a lot of work.
         // STEP B (stream): .sorted(Comparator.comparing(...)), then .toList()
-
-        return new ArrayList<>(); // replace this line
+        return products.stream().sorted(Comparator.comparing(product -> product.getPrice())).toList(); // replace this line
     }
 
     private static List<Product> getInventory() {
