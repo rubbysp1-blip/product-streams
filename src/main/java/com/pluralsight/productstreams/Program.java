@@ -46,7 +46,7 @@ public class Program {
 //            }
 //        }
         // STEP B (stream): products.stream(), then .filter(...), then .toList()
-        productList = products.stream().filter(product -> product.getCategory().equalsIgnoreCase(category)).toList();
+        productList = products.stream().filter(product -> product.getCategory() != null && product.getCategory().equalsIgnoreCase(category)).toList();
         return productList; // replace this line
     }
 
@@ -59,8 +59,7 @@ public class Program {
 //        }
         // STEP B (stream, after Wednesday's demo): .map(...) each product to its price,
         //   then .reduce(BigDecimal.ZERO, ...) to add them up
-        BigDecimal totalPrice = products.stream().map(product -> {return product.getPrice();}).reduce(BigDecimal.ZERO, (temp, num) -> temp.add(num));
-        return totalPrice; // replace this line
+        return products.stream().map(product -> {return product.getPrice();}).reduce(BigDecimal.ZERO, (temp, num) -> temp.add(num)); // replace this line
     }
 
     // TASK 3: how many products are in one category
@@ -74,21 +73,20 @@ public class Program {
 //
 //        }
         // STEP B (stream): .filter(...), then .count()
-        long countProducts = products.stream().filter(product -> product.getCategory().equalsIgnoreCase(category)).count();
-        return countProducts; // replace this line
+        return products.stream().filter(product -> product.getCategory().equalsIgnoreCase(category)).count(); // replace this line
     }
 
     // TASK 4: a list of just the prices
     private static List<BigDecimal> getPrices(List<Product> products) {
         // STEP A (loop): an empty List<BigDecimal>; add each product's price
-        List<BigDecimal> eachProductPrice = new ArrayList<>();
-        for(Product product : products){
-            eachProductPrice.add(product.getPrice());
-        }
+//        List<BigDecimal> eachProductPrice = new ArrayList<>();
+//        for(Product product : products){
+//            eachProductPrice.add(product.getPrice());
+//        }
         // STEP B (stream, after Wednesday's demo): .map(...) each product to its price,
         //   then .toList()
-        //products.stream().map(product -> product.getPrice()).toList();
-        return eachProductPrice; // replace this line
+
+        return products.stream().map(product -> product.getPrice()).toList(); // replace this line
     }
 
     // TASK 5: print each product
