@@ -112,9 +112,15 @@ public class Program {
     private static List<String> getNamesUnder(List<Product> products, BigDecimal limit) {
         // STEP A (loop): an empty List<String>; add the name of each product whose price
         //   is less than limit (compareTo)
+        List<String> productNames = new ArrayList<>();
+//        for(Product product : products){
+//            if(product.getPrice().compareTo(limit) < 0){
+//                productNames.add(product.getName());
+//            }
+//        }
         // STEP B (stream): .filter(...), then .map(...) each product to its name, then .toList()
-
-        return new ArrayList<>(); // replace this line
+        productNames = products.stream().filter(product -> product.getPrice().compareTo(limit) < 0).map(product -> product.getName()).toList();
+        return productNames; // replace this line
     }
 
     // TASK 7 (optional): the products from cheapest to most expensive
