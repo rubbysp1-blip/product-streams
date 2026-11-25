@@ -3,6 +3,7 @@ package com.pluralsight.productstreams;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Program {
@@ -33,6 +34,14 @@ public class Program {
             System.out.println("\nMost expensive: $" + Collections.max(prices));
             System.out.println("Cheapest: $" + Collections.min(prices));
         }
+
+        // 6 (optional). The names of the products under a price
+        BigDecimal limit = new BigDecimal("50.00");
+        System.out.println("\nUnder $" + limit + ": " + getNamesUnder(inventory, limit));
+
+        // 7 (optional). Cheapest to most expensive
+        System.out.println("\n--- Cheapest first ---");
+        printProducts(getProductsByPrice(inventory));
     }
 
     // TASK 1: the products in one category
@@ -59,7 +68,7 @@ public class Program {
 //        }
         // STEP B (stream, after Wednesday's demo): .map(...) each product to its price,
         //   then .reduce(BigDecimal.ZERO, ...) to add them up
-        return products.stream().map(product -> {return product.getPrice();}).reduce(BigDecimal.ZERO, (temp, num) -> temp.add(num)); // replace this line
+        return products.stream().map(product -> {return product.getPrice();}).reduce(BigDecimal.ZERO, (total, price) -> total.add(price)); // replace this line
     }
 
     // TASK 3: how many products are in one category
@@ -97,6 +106,23 @@ public class Program {
 //        }
         // STEP B: products.forEach(...) with a lambda
         products.forEach(product -> System.out.println(product));
+    }
+
+    // TASK 6 (optional): the names of the products under a price
+    private static List<String> getNamesUnder(List<Product> products, BigDecimal limit) {
+        // STEP A (loop): an empty List<String>; add the name of each product whose price
+        //   is less than limit (compareTo)
+        // STEP B (stream): .filter(...), then .map(...) each product to its name, then .toList()
+
+        return new ArrayList<>(); // replace this line
+    }
+
+    // TASK 7 (optional): the products from cheapest to most expensive
+    private static List<Product> getProductsByPrice(List<Product> products) {
+        // No loop for this one: sorting with a loop is a lot of work.
+        // STEP B (stream): .sorted(Comparator.comparing(...)), then .toList()
+
+        return new ArrayList<>(); // replace this line
     }
 
     private static List<Product> getInventory() {
